@@ -2,25 +2,21 @@ class Solution
 {
 public:
     vector<string> stringMatching(vector<string>& words) 
-    {   
-        set<string> s;
-        int n = words.size();
-        for (int i = 0; i < n; i++)
+    {
+        unordered_set<string> ans;
+
+        for (auto a : words)
         {
-            for (int j = 0; j < n; j++)
+            for (auto b : words)
             {
-                if (i != j)
+                if (a != b)
                 {
-                    if (words[j].find(words[i]) != std::string::npos)
-                        s.insert(words[i]);
+                    if (a.find(b) != string::npos)
+                        ans.insert(b);
                 }
             }
         }
-        
-        vector<string> ans;
-        for (auto a : s)
-            ans.push_back(a);
 
-        return ans;
+        return {ans.begin(), ans.end()};
     }
 };
